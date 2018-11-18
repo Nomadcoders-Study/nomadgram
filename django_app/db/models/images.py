@@ -1,10 +1,11 @@
 from django.db import models
 
-from db.models import TimeStampedModel
+from db.models import TimeStampedModel, User
 
 __all__ = (
     'Images',
     'Comment',
+    'Like',
 )
 
 
@@ -20,3 +21,10 @@ class Images(TimeStampedModel):
 class Comment(TimeStampedModel):
 
     message = models.TextField()
+
+
+class Like(TimeStampedModel):
+
+    creator = models.ForeignKey(
+        User,
+    )
