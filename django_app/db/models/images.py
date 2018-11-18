@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from db.models import TimeStampedModel, User
@@ -26,5 +27,5 @@ class Comment(TimeStampedModel):
 class Like(TimeStampedModel):
 
     creator = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
     )
