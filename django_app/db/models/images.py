@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
-
-from db.models import TimeStampedModel, User
+from db.models import TimeStampedModel
 
 __all__ = (
     'Images',
@@ -17,15 +16,32 @@ class Images(TimeStampedModel):
         max_length=140,
     )
     caption = models.TextField()
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+    )
 
 
 class Comment(TimeStampedModel):
 
     message = models.TextField()
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+    )
+    image = models.ForeignKey(
+        Images,
+        null=True,
+    )
 
 
 class Like(TimeStampedModel):
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        null=True,
+    )
+    image = models.ForeignKey(
+        Images,
+        null=True,
     )
