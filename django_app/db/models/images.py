@@ -53,4 +53,4 @@ class Like(TimeStampedModel):
     )
 
     def __str__(self):
-        return '{} - {}'.format(self.creator.username, self.image.caption)
+        return 'User : {} - Image Caption : {}'.format(self.creator.username, self.image.caption)
