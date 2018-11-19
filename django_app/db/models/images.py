@@ -51,3 +51,6 @@ class Like(TimeStampedModel):
         Images,
         null=True,
     )
+
+    def __str__(self):
+        return '{} - {}'.format(self.creator.username, self.image.caption)
