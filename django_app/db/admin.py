@@ -15,6 +15,10 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(models.Images)
 class ImageAdmin(admin.ModelAdmin):
 
+    list_display_links = (
+        'location',
+    )
+
     list_display = (
         'file',
         'location',
