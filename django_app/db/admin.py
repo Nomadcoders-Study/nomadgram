@@ -13,7 +13,6 @@ class ImageAdmin(admin.ModelAdmin):
     pass
 
 
-
 @admin.register(models.Like)
 class LikeAdmin(admin.ModelAdmin):
     pass
