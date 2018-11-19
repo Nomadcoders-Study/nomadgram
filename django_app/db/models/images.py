@@ -37,6 +37,9 @@ class Comment(TimeStampedModel):
         null=True,
     )
 
+    def __str__(self):
+        return self.message
+
 
 class Like(TimeStampedModel):
 
