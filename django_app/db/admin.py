@@ -5,19 +5,44 @@ from . import models
 
 @admin.register(models.User)
 class UserAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'username',
+        'name',
+        'is_superuser',
+    )
 
 
 @admin.register(models.Images)
 class ImageAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        'file',
+        'location',
+        'caption',
+        'creator',
+        'created_at',
+        'updated_at',
+    )
 
 
 @admin.register(models.Like)
 class LikeAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        'creator',
+        'image',
+        'created_at',
+        'updated_at',
+    )
 
 
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
-    pass
+
+    list_display = (
+        'message',
+        'creator',
+        'image',
+        'created_at',
+        'updated_at',
+    )
