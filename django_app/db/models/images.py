@@ -21,6 +21,9 @@ class Images(TimeStampedModel):
         null=True,
     )
 
+    def __str__(self):
+        return '{} - {}'.format(self.location, self.caption)
+
 
 class Comment(TimeStampedModel):
 
