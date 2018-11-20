@@ -5,6 +5,11 @@ from . import models
 
 @admin.register(models.User)
 class UserAdmin(admin.ModelAdmin):
+
+    fieldsets = (
+        ('User Profile', {'fields': ('name', 'followers', 'following')}),
+    )
+
     list_display = (
         'username',
         'name',
