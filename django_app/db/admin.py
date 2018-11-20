@@ -19,6 +19,17 @@ class ImageAdmin(admin.ModelAdmin):
         'location',
     )
 
+    search_fields = (
+        'file',
+        'location',
+        'caption',
+    )
+
+    list_filter = (
+        'location',
+        'creator',
+    )
+
     list_display = (
         'file',
         'location',
