@@ -33,10 +33,14 @@ class User(AbstractUser):
     followers = models.ManyToManyField(
         "self",
         blank=True,
+        symmetrical=False,
+        related_name='nomadgram_followers',
     )
     following = models.ManyToManyField(
         "self",
         blank=True,
+        symmetrical=False,
+        related_name='nomadgram_following',
     )
     push_token = models.TextField(
         default='',
