@@ -8,7 +8,7 @@ from images.serializers import ImageSerializer
 class ListAllImages(APIView):
 
     def get(self, request, format=None):
-
+        print(1)
         all_images = Images.objects.all()
         serializer = ImageSerializer(all_images, many=True)
 
