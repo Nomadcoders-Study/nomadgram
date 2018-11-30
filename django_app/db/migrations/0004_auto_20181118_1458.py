@@ -22,17 +22,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='comment',
             name='image',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='db.Images'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='db.Image'),
         ),
         migrations.AddField(
-            model_name='images',
+            model_name='image',
             name='creator',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='like',
             name='image',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='db.Images'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='db.Image'),
         ),
         migrations.AlterField(
             model_name='like',
