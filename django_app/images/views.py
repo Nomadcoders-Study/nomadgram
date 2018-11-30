@@ -10,5 +10,4 @@ class ListAllImages(APIView):
     def get(self, request, format=None):
         all_images = Image.objects.all()
         serializer = ImageSerializer(all_images, many=True)
-
         return Response(data=serializer.data)
