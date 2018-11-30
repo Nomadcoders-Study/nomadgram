@@ -35,7 +35,7 @@ class Comment(TimeStampedModel):
     image = models.ForeignKey(
         Image,
         null=True,
-        related_name = 'comments',
+        related_name='comments',
     )
 
     def __str__(self):
