@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import User, Images, Like, Comment
+from .models import User, Image, Like, Comment
 # Register your models here.
 
 
@@ -47,7 +47,7 @@ class MyUserAdmin(AuthUserAdmin):
     search_fields = ['name']
 
 
-@admin.register(Images)
+@admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
 
     list_display_links = (

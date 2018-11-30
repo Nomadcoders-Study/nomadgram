@@ -3,13 +3,13 @@ from django.db import models
 from db.models import TimeStampedModel
 
 __all__ = (
-    'Images',
+    'Image',
     'Comment',
     'Like',
 )
 
 
-class Images(TimeStampedModel):
+class Image(TimeStampedModel):
 
     file = models.ImageField()
     location = models.CharField(
@@ -33,8 +33,9 @@ class Comment(TimeStampedModel):
         null=True,
     )
     image = models.ForeignKey(
-        Images,
+        Image,
         null=True,
+        related_name = 'comments',
     )
 
     def __str__(self):
@@ -48,8 +49,9 @@ class Like(TimeStampedModel):
         null=True,
     )
     image = models.ForeignKey(
-        Images,
+        Image,
         null=True,
+        related_name='likes',
     )
 
     def __str__(self):
