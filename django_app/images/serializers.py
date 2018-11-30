@@ -12,7 +12,13 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = (
+            'id',
+            'file',
+            'location',
+            'caption',
+            'comments',
+        )
 
 
 class CommentSerializer(serializers.ModelSerializer):
