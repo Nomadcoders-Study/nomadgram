@@ -17,12 +17,16 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
+    image = ImageSerializer()
+
     class Meta:
         model = Comment
         fields = '__all__'
 
 
 class LikeSerializer(serializers.ModelSerializer):
+
+    image = ImageSerializer()
 
     class Meta:
         model = Like
