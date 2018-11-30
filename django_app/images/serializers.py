@@ -18,6 +18,7 @@ class ImageSerializer(serializers.ModelSerializer):
             'location',
             'caption',
             'comments',
+            'likes',
         )
 
 
