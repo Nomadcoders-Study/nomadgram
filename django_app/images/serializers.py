@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from db.models import Images, Comment, Like
+from db.models import Image, Comment, Like
 
 
 class ImageSerializer(serializers.Serializer):
 
     class Meta:
-        model = Images
+        model = Image
         fields = '__all__'
 
 
