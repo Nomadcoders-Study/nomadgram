@@ -19,6 +19,7 @@ class Image(TimeStampedModel):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
+        related_name='images',
     )
 
     def __str__(self):
