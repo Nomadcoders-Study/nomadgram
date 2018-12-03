@@ -23,7 +23,7 @@ class Image(TimeStampedModel):
     )
 
     @property
-    def count_likes(self):
+    def like_count(self):
         return self.likes.all().count()
 
     def __str__(self):
