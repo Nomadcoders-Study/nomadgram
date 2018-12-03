@@ -5,25 +5,14 @@ from db.models import Image, Comment, Like
 from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer
 
 
-class ListAllImages(APIView):
+class Feed(APIView):
 
     def get(self, request, format=None):
-        all_images = Image.objects.all()
-        serializer = ImageSerializer(all_images, many=True)
-        return Response(data=serializer.data)
 
+        user = request.user
 
-class ListAllComments(APIView):
+        following_users = user.following.all()
 
-    def get(self, request, format=None):
-        all_comments = Comment.objects.all()
-        serializer = CommentSerializer(all_comments, many=True)
-        return Response(data=serializer.data)
+        print(following_users)
 
-
-class ListAllLikes(APIView):
-
-    def get(self, request, format=None):
-        all_likes = Like.objects.all()
-        serializer = LikeSerializer(all_likes, many=True)
-        return Response(data=serializer.data)
+        return Response(status=200)
