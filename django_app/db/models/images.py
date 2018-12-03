@@ -22,6 +22,10 @@ class Image(TimeStampedModel):
         related_name='images',
     )
 
+    @property
+    def count_likes(self):
+        return self.likes.all().count()
+
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
 
