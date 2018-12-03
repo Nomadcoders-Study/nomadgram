@@ -41,16 +41,13 @@ class LikeImage(APIView):
         except Image.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        try:
-            preexisiting_like = Like.objects.get(
-                creator=user,
-                image=image,
-            )
-            preexisiting_like.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Like.DoesNotExist:
-            new_like = Like.objects.create(
-                creator=user,
-                image=image,
-            )
+        like, created = Like.objects.get_or_create(
+            creator=user,
+            image=image,
+        )
+
+        if created:
             return Response(status=status.HTTP_201_CREATED)
+        else:
+            like.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
