@@ -33,3 +33,20 @@ class FollowUser(APIView):
         user_to_follow.followers.add(user)
 
         return Response(status=status.HTTP_200_OK)
+
+
+class UnFollowUser(APIView):
+
+    def post(self, request, user_id, format=None):
+
+        user = request.user
+
+        try:
+            user_to_follow = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        user.following.remove(user_to_follow)
+        user_to_follow.followers.remove(user)
+
+        return Response(status=status.HTTP_200_OK)
