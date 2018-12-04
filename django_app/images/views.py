@@ -51,3 +51,10 @@ class LikeImage(APIView):
         else:
             like.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CommentOnImange(APIView):
+
+    def post(self, request, image_id, format=None):
+
+        print(request.data)
