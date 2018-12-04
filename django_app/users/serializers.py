@@ -9,6 +9,7 @@ class ExploreUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
+            'id',
             'profile_image',
             'username',
             'name',
