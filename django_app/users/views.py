@@ -1,7 +1,8 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import ExploreUserSerializer
+from .serializers import ExploreUserSerializer, UserProfileSerializer
+
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -50,3 +51,17 @@ class UnFollowUser(APIView):
         user_to_follow.followers.remove(user)
 
         return Response(status=status.HTTP_200_OK)
+
+
+class UserProfile(APIView):
+
+    def get(self, request, username, format=None):
+
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = UserProfileSerializer(user)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
