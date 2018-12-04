@@ -11,6 +11,18 @@ __all__ = (
 User = get_user_model()
 
 
+class UserProfileImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Image
+        fields = (
+            'id',
+            'file',
+            'comment_count',
+            'like_count',
+        )
+
+
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:

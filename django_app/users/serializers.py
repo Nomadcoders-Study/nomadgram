@@ -1,10 +1,14 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from images.serializers import UserProfileImageSerializer
+
 User = get_user_model()
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+
+    images = UserProfileImageSerializer(many=True)
 
     class Meta:
         model = User
@@ -16,6 +20,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'post_count',
             'followers_count',
             'following_count',
+            'images',
         )
 
 
