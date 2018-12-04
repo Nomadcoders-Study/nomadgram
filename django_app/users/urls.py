@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<user_id>\d+)/follow/$', view=views.FollowUser.as_view(), name='follow_user'),
     url(r'^(?P<user_id>\d+)/unfollow/$', view=views.UnFollowUser.as_view(), name='unfollow_user'),
     url(r'^(?P<username>\w+)/$', view=views.UserProfile.as_view(), name='user_profile'),
+    url(r'^(?P<username>\w+)/followers/$', view=views.UserFollowers.as_view(), name='user_followers'),
 ]
