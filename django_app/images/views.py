@@ -57,4 +57,18 @@ class CommentOnImange(APIView):
 
     def post(self, request, image_id, format=None):
 
-        print(request.data)
+        user = request.user
+
+        try:
+            image = Image.objects.get(id=image_id)
+        except Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(creator=user, image=image)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        else:
+
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
