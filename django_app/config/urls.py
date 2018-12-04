@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
 
     url(r'^images/', include('images.urls', namespace='images')),
+    url(r'^users/', include('users.urls', namespace='users')),
 ]
