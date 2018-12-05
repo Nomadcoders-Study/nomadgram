@@ -11,6 +11,17 @@ __all__ = (
 User = get_user_model()
 
 
+class SmallImageSerializer(serializers.ModelSerializer):
+
+    """ Used for the notifications """
+
+    class Meta:
+        model = Image
+        fields = (
+            'file',
+        )
+
+
 class CountImageSerializer(serializers.ModelSerializer):
 
     class Meta:

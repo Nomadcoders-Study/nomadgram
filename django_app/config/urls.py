@@ -24,4 +24,5 @@ urlpatterns = [
 
     url(r'^images/', include('images.urls', namespace='images')),
     url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^notifications/', include('notifications.urls', namespace='notifications')),
 ]
