@@ -60,6 +60,7 @@ LOCAL_APPS = [
     'db',
     'users',
     'images',
+    'notifications',
 ]
 
 AUTH_USER_MODEL = 'db.User'
