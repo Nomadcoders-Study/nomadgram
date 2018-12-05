@@ -7,3 +7,9 @@ class Constant:
         ('female', 'Female'),
         ('not-specified', 'Not specified')
     )
+
+    TYPE_CHOICES = (
+        ('like', 'Like'),
+        ('comment', 'Comment'),
+        ('follow', 'Follow'),
+    )
