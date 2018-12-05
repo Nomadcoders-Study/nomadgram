@@ -24,3 +24,7 @@ class Notification(TimeStampedModel):
         null=True,
         blank=True,
     )
+    comment = models.TextField(
+        null=True,
+        blank=True,
+    )
