@@ -83,6 +83,6 @@ project_folder/
 - settings_deploy.json
  : 서버 배포용 설정 정보 관리
 
-**[ 중요 ] : 위 settings 파일들의 경우 Private 저장소가 아닐 경우 git에 포함 하면 안됨!!!**
+**[ 중요 ] : 프로덕트 프로젝트의 경우 대부분 Private 저장소겠지만, 위 settings 파일들의 경우 Private 저장소가 아닐 경우 git에 포함 하면 안됨!!!**
 
 #### 4. 현재 수강중인 패캠 DebOps 강의에서 배운 클라우드 서비스 서버 아키텍쳐에 따라 AWS 에서 제시하는 프랙티스에 맞게 배포 해보기.
