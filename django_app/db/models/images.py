@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from taggit.managers import TaggableManager
+
 from db.models import TimeStampedModel
 
 __all__ = (
@@ -21,6 +23,7 @@ class Image(TimeStampedModel):
         null=True,
         related_name='images',
     )
+    tags = TaggableManager()
 
     @property
     def like_count(self):
