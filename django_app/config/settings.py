@@ -157,13 +157,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# 태그 대소문자 구분 하지 않도록 설정
+TAGGIT_CASE_INSENSITIVE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
