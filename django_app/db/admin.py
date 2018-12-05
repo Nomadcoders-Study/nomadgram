@@ -103,4 +103,8 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
 
-    pass
+    list_display = (
+        'creator',
+        'to',
+        'notification_type',
+    )
