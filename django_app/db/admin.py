@@ -3,7 +3,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import User, Image, Like, Comment
+from .models import User, Image, Like, Comment, Notification
+
+
 # Register your models here.
 
 
@@ -96,3 +98,9 @@ class CommentAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at',
     )
+
+
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+
+    pass
