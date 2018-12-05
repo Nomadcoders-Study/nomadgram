@@ -1,6 +1,9 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from notifications.views import create_notification
+from util import Constant
 from .serializers import ListUserSerializer, UserProfileSerializer
 
 from django.contrib.auth import get_user_model
@@ -32,6 +35,8 @@ class FollowUser(APIView):
 
         user.following.add(user_to_follow)
         user_to_follow.followers.add(user)
+
+        create_notification(user, user_to_follow, Constant.TYPE_FOLLOW)
 
         return Response(status=status.HTTP_200_OK)
 
