@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.db import models
 
-from db.models import Image
+from db.models import Image, TimeStampedModel
 from util import Constant
 
 
-class Notification(models.Model):
+class Notification(TimeStampedModel):
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
