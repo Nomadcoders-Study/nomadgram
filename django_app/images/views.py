@@ -98,12 +98,12 @@ class CommentOnImange(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class Comment(APIView):
+class CommentDelete(APIView):
 
     def delete(self, request, comment_id, format=None):
 
         user = request.user
-
+        print(comment_id, user)
         try:
             comment = Comment.objects.get(id=comment_id, creator=user)
             comment.delete()
