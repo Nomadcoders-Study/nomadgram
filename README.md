@@ -38,3 +38,38 @@
 
 > DB Model 만을 관리하는 app을 만들어 해당 app만 이관하면 데이터베이스 모델을 그대로 사용 할 수 있게 하기 위함
 
+
+
+## 강의 완강 후 변경 해야 할 점
+
+#### 1. DB : AWS RDS 이용
+
+#### 2. Static 파일 관리 : AWS S3 이용
+
+#### 3. 각종 보안 설정 키 값 분할 => 공부가 아닌 프로덕트 개발시 라면 가장 먼저 해야 하는 부분
+
+> 개인적으로 좋아하는 Project Structure
+
+```test
+project_folder/
+        .conf_secret/
+                settings_common.json
+                settings_debug.json
+                settings_deploy.json
+        .django_app/
+        ...
+        ...
+```
+
+- settings_common.json
+ : 기본공통 설정 정보 관리 ( ex: Django Secret Key.. )
+
+- settings_debug.json
+ : 로컬 개발용 설정 정보 관리
+
+- settings_deploy.json
+ : 서버 배포용 설정 정보 관리
+
+**[ 중요 ] : 위 settings 파일들의 경우 Private 저장소가 아닐 경우 git에 포함 하면 안됨!!!**
+
+#### 4. 현재 수강중인 패캠 DebOps 강의에서 배운 클라우드 서비스 서버 아키텍쳐에 따라 AWS 에서 제시하는 프랙티스에 맞게 배포 해보기.
