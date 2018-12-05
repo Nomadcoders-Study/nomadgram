@@ -5,6 +5,7 @@ Django==1.11.15
 django-allauth==0.33.0
 django-cors-headers==2.4.0
 django-rest-auth==0.9.3
+django-taggit==0.23.0
 djangorestframework==3.9.0
 djangorestframework-jwt==1.11.0
 idna==2.7
