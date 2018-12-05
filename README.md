@@ -50,13 +50,26 @@
 
 > 개인적으로 좋아하는 Project Structure
 
-```test
+```
 project_folder/
         .conf_secret/
                 settings_common.json
                 settings_debug.json
                 settings_deploy.json
         .django_app/
+        ...
+        ...
+```
+
+또는
+
+```
+project_folder/
+        .django_app/
+                .conf_secret/
+                        settings_common.json
+                        settings_debug.json
+                        settings_deploy.json
         ...
         ...
 ```
