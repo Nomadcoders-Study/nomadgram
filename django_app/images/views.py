@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from db.models import Image, Comment, Like
-from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer
+from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer, CountImageSerializer
 
 
 class Feed(APIView):
@@ -118,10 +118,14 @@ class Search(APIView):
 
         hashtags = request.query_params.get('hashtags', None)
 
-        hashtags = hashtags.split(',')
+        if hashtags is not None:
+            hashtags = hashtags.split(',')
 
-        images = Image.objects.filter(tags__name__in=hashtags).distinct()
+            images = Image.objects.filter(tags__name__in=hashtags).distinct()
 
-        serializer = ImageSerializer(images, many=True)
+            serializer = CountImageSerializer(images, many=True)
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -11,7 +11,7 @@ __all__ = (
 User = get_user_model()
 
 
-class UserProfileImageSerializer(serializers.ModelSerializer):
+class CountImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
