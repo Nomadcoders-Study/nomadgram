@@ -21,4 +21,6 @@ class Notification(TimeStampedModel):
     )
     image = models.ForeignKey(
         Image,
+        null=True,
+        blank=True,
     )
