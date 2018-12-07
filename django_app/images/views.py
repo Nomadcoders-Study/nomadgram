@@ -53,6 +53,7 @@ class LikeImage(APIView):
                 creator=user,
                 image=image,
             )
+            create_notification(user, image.creator, Constant.TYPE_LIKE, image)
             return Response(status=status.HTTP_201_CREATED)
 
 
