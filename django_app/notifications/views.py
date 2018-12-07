@@ -21,7 +21,7 @@ class Notifications(APIView):
 
 def create_notification(creator, to, type, image=None, comment=None):
 
-    notification = Notification.objects.create(
+    Notification.objects.create(
         creator=creator,
         to=to,
         notification_type=type,
