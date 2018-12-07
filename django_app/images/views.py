@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from db.models import Image, Comment, Like
+from db.models import Image, Comment, Like, Constant
 from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer, CountImageSerializer
+from notifications.views import create_notification
 
 
 class Feed(APIView):
@@ -92,6 +93,7 @@ class CommentOnImange(APIView):
 
         if serializer.is_valid():
             serializer.save(creator=user, image=image)
+            create_notification(user, image.creator, Constant.TYPE_COMMENT, image, request.data['message'])
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         else:
 
@@ -103,7 +105,7 @@ class CommentDelete(APIView):
     def delete(self, request, comment_id, format=None):
 
         user = request.user
-        print(comment_id, user)
+
         try:
             comment = Comment.objects.get(id=comment_id, creator=user)
             comment.delete()
