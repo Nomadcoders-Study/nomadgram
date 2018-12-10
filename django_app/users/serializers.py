@@ -8,7 +8,7 @@ User = get_user_model()
 
 class UserProfileSerializer(serializers.ModelSerializer):
 
-    images = CountImageSerializer(many=True)
+    images = CountImageSerializer(many=True, read_only=True)
 
     post_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
