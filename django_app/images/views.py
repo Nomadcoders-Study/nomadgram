@@ -44,6 +44,13 @@ class Feed(APIView):
 
 class ImageDetail(APIView):
 
+    def find_own_image(self, image_id, user):
+        try:
+            image = Image.objects.get(id=image_id, creator=user)
+            return image
+        except Image.DoesNotExist:
+            return None
+
     def get(self, request, image_id, format=None):
 
         user = request.user
@@ -61,9 +68,10 @@ class ImageDetail(APIView):
 
         user = request.user
 
-        try:
-            image = Image.objects.get(id=image_id, creator=user)
-        except Image.DoesNotExist:
+        image = self.find_own_image(image_id, user)
+
+        if image is None:
+
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         serializer = InputImageSerializer(image, data=request.data, partial=True)
@@ -77,6 +85,19 @@ class ImageDetail(APIView):
         else:
 
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, image_id, format=None):
+
+        user = request.user
+
+        image = self.find_own_image(image_id, user)
+
+        if image is None:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        image.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class LikeImage(APIView):
