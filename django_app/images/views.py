@@ -11,7 +11,7 @@ from users.serializers import ListUserSerializer
 User = get_user_model()
 
 
-class Feed(APIView):
+class Images(APIView):
 
     def get(self, request, format=None):
 
@@ -40,6 +40,22 @@ class Feed(APIView):
         serializer = ImageSerializer(sorted_list, many=True)
 
         return Response(serializer.data)
+
+    def post(self, request, format=None):
+
+        user = request.user
+
+        serializer = InputImageSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        else:
+
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ImageDetail(APIView):
