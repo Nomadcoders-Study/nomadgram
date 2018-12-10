@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^(?P<username>\w+)/followers/$', views.UserFollowers.as_view(), name='user_followers'),
     url(r'^(?P<username>\w+)/following/$', views.UserFollowing.as_view(), name='user_following'),
     url(r'^(?P<username>\w+)/password/$', views.ChangePassword.as_view(), name='change_password'),
+
+    url(r'^login/facebook/$', views.FacebookLogin.as_view(), name='fb_login'),
 ]
