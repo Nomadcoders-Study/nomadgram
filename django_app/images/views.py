@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from db.models import Image, Comment, Like, Constant
-from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer, CountImageSerializer
+from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer, CountImageSerializer, \
+    InputImageSerializer
 from notifications.views import create_notification
 from users.serializers import ListUserSerializer
 
@@ -55,6 +56,27 @@ class ImageDetail(APIView):
         serializer = ImageSerializer(image)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, image_id, format=None):
+
+        user = request.user
+
+        try:
+            image = Image.objects.get(id=image_id, creator=user)
+        except Image.DoesNotExist:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        serializer = InputImageSerializer(image, data=request.data, partial=True)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LikeImage(APIView):
