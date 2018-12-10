@@ -1,9 +1,13 @@
+from django.contrib.auth import get_user_model
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from db.models import Image, Comment, Like, Constant
 from images.serializers import ImageSerializer, CommentSerializer, LikeSerializer, CountImageSerializer
 from notifications.views import create_notification
+from users.serializers import ListUserSerializer
+
+User = get_user_model()
 
 
 class Feed(APIView):
@@ -54,6 +58,18 @@ class ImageDetail(APIView):
 
 
 class LikeImage(APIView):
+
+    def get(self, request, image_id, format=None):
+
+        likes = Like.objects.filter(image__id=image_id)
+
+        like_creators_ids = likes.values('creator__id')
+
+        users = User.objects.filter(id__in=like_creators_ids)
+
+        serializer = ListUserSerializer(users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, image_id, format=None):
 
