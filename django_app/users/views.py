@@ -164,25 +164,31 @@ class ChangePassword(APIView):
 
         user = request.user
 
-        current_password = request.data.get('current_password', None)
+        if user.username == username:
 
-        # 첫번째 비번이 잘 전달 되는가?
-        if current_password and current_password is not None:
+            current_password = request.data.get('current_password', None)
 
-            # 입력한 비밀번호가 현재 비밀번호와 일치 한가? ( True / False )
-            passwords_match = user.check_password(current_password)
+            # 첫번째 비번이 잘 전달 되는가?
+            if current_password and current_password is not None:
 
-            if passwords_match:
+                # 입력한 비밀번호가 현재 비밀번호와 일치 한가? ( True / False )
+                passwords_match = user.check_password(current_password)
 
-                new_password = request.data.get('new_password', None)
+                if passwords_match:
 
-                # 새 비밀번호 값이 잘 전달 되는가?
-                if new_password and new_password is not None:
+                    new_password = request.data.get('new_password', None)
 
-                    user.set_password(new_password)
+                    # 새 비밀번호 값이 잘 전달 되는가?
+                    if new_password and new_password is not None:
 
-                    user.save()
+                        user.set_password(new_password)
 
-                    return Response(status=status.HTTP_200_OK)
+                        user.save()
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+                        return Response(status=status.HTTP_200_OK)
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
