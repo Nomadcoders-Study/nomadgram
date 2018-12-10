@@ -49,8 +49,8 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'rest_auth',
-    # 'rest_auth.registration',
+    'rest_auth',
+    'rest_auth.registration',
     'corsheaders',
 
     'taggit',

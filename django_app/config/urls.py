@@ -20,10 +20,10 @@ from rest_framework_jwt.views import obtain_jwt_token
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    # url(r'^rest-auth/', include('rest_auth.urls')),
-    # url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
 
-    url(r'^api-token-auth/', obtain_jwt_token),
+    # url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^users/', include('users.urls', namespace='users')),
     url(r'^images/', include('images.urls', namespace='images')),
     url(r'^notifications/', include('notifications.urls', namespace='notifications')),
